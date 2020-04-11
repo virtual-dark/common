@@ -10,8 +10,8 @@ use Term::ANSIColor;
 
 my $login = getlogin();
 my $currentScriptName   = basename($0);
-my $writeLog            = ">>/home/$login/log/$currentScriptName.log";
-my $dirLog              = "/home/$login/log/";
+my $writeLog            = ">>/home/$login/no_depot/log/$currentScriptName.log";
+my $dirLog              = "/home/$login/no_depot/log/";
 
 sub debug
 {

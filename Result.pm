@@ -201,6 +201,10 @@ sub init
             'name'     => 'NOT_IMPLEMENTED',
             'httpCode' => 501,
         },
+        266 => {
+            'name'     => 'NO_ANSWER',
+            'httpCode' => 266,
+        },
         401 => {
             'name'     => 'PERMISSION_DENIED',
             'httpCode' => 403,
@@ -208,6 +212,10 @@ sub init
         500 => {
             'name'     => 'INTERNAL_ERROR',
             'httpCode' => 500,
+        },
+        530 => {
+            'name'     => 'TIMEOUT',
+            'httpCode' => 504,
         },
     };
     foreach my $status (keys %$exceptionTypes)
