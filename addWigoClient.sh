@@ -1,4 +1,15 @@
 #!/bin/sh
+SERVERGROUP='unset'
+while getopts g: option
+do
+    case "${option}"
+        in
+        g) SERVERGROUP=${OPTARG};;
+    esac
+done
+
+echo "My server Group : $SERVERGROUP"
+
 RELEASE=''
 if grep --quiet jessie /etc/os-release ; then
     RELEASE='jessie'
@@ -187,6 +198,16 @@ echo "This hostname : $HOSTNAME ..."
 
 echo "Change name server by $HOSTNAME in file /etc/wigo/wigo.conf ..."
 sed -i "s/PLIK/$HOSTNAME/g" /etc/wigo/wigo.conf
+
+echo "Change group server in file /etc/wigo/wigo.conf ..."
+if [ $PRIVATEIP -eq 1 ] ; then
+    sed -i "s/Group                       = \"\"/Group                       = \"Gateway_Labs_vxlan_5000\"/g" /etc/wigo/wigo.conf
+elif [ "$SERVERGROUP" != "unset" ] ; then
+    sed -i "s/Group                       = \"\"/Group                       = \"$SERVERGROUP\"/g" /etc/wigo/wigo.conf
+else
+    sed -i "s/Group                       = \"\"/Group                       = \"TmpZone\"/g" /etc/wigo/wigo.conf
+fi
+
 
 echo "Restart WIGO ..."
 /etc/init.d/wigo restart
