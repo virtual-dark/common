@@ -75,7 +75,7 @@ if crontab -l | grep --quiet 'ntp.ovh.net' ; then
     echo "Crontab for ntp.ovh.net already update..."
 else
     echo "Add crontab for ntp.ovh.net ..."
-    (crontab -l 2>/dev/null; echo "* * * * * /usr/sbin/ntpdate ntp.ovh.net") | crontab -
+    (crontab -l 2>/dev/null; echo "* * * * * /usr/sbin/ntpdate ntp.ovh.net >/dev/null 2>&1") | crontab -
 fi
 
 sleep 1
