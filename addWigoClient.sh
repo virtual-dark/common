@@ -15,6 +15,8 @@ if grep --quiet jessie /etc/os-release ; then
     RELEASE='jessie'
 elif grep --quiet stretch /etc/os-release ; then
     RELEASE='stretch'
+elif grep --quiet buster /etc/os-release ; then
+    RELEASE='buster'
 else
     echo "Script not implemeted for this release..."
     cat /etc/os-release
@@ -53,6 +55,10 @@ if [ "$RELEASE" = "jessie" ]; then
 elif [ "$RELEASE" = "stretch" ]; then
     echo "Add debian depot for stretch..."
     echo "deb http://deb.carsso.com stretch main" > /etc/apt/sources.list.d/deb.carsso.com.list
+    wget -O- http://deb.carsso.com/deb.carsso.com.key | apt-key add -
+elif [ "$RELEASE" = "buster" ]; then
+    echo "Add debian depot for buster..."
+    echo "deb http://deb.carsso.com buster main" > /etc/apt/sources.list.d/deb.carsso.com.list
     wget -O- http://deb.carsso.com/deb.carsso.com.key | apt-key add -
 fi
 
