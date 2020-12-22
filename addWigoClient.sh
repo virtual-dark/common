@@ -4,7 +4,7 @@ while getopts g: option
 do
     case "${option}"
         in
-        g) SERVERGROUP=${OPTARG};;
+        g) SERVERGROUP=${OPTARG};
     esac
 done
 
